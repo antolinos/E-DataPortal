@@ -3,9 +3,10 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 
 import './App.css';
-import LoginForm from './components/LoginForm'
+import LoginForm from './components/Login/LoginForm'
 import Header from './components/Header.js'
 import List from './components/List.js'
+import LoginContainer from './containers/LoginContainer.js';
 
 class App extends Component {
   render() {
@@ -27,8 +28,9 @@ class App extends Component {
           </ul>
 
           <hr />
-
+          
           <Route exact path="/" component={Login} />
+          <Route path="/login" component={LoginContainer} />
           <Route path="/about" component={Home} />
           <Route path="/topics" component={List} />
         </div>

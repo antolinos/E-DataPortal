@@ -2,9 +2,17 @@ import $ from 'jquery';
 
 import {
   SIGN_IN,
-  LOGGED_IN
+  LOGGED_IN,
+  SIGN_OUT
 } from '../constants/ActionTypes'
 
+
+export function doSignOut(user) {
+  return {
+    type: SIGN_OUT,
+    user
+  };
+}
 
 
 export function setLoginInfo(user) {
@@ -16,7 +24,7 @@ export function setLoginInfo(user) {
 
 
 export function signIn(username, password) {
-  let server = "https://ovm-icat-test.esrf.fr:8181";
+  let server = "https://icat.esrf.fr";
   let connection = {
           plugin : 'db',
           credentials : [
@@ -36,16 +44,15 @@ export function signIn(username, password) {
                   success: function( data ) {			
                       if (data){
                         if (data.sessionId){
-                          //dispatch(setLoginInfo({"username" : username, "sessionId" : data.sessionId}));
+                          dispatch(setLoginInfo({"username" : username, "sessionId" : data.sessionId}));
                           alert("Logged IN with sessionId: " + data.sessionId)
                         }
                       }
 
                       
                   },			
-                  error: function(error) {
-                    
-                    console.log(error);
+                  error: function(error) {                    
+                      console.log(error);
                       alert( "Sorry, there was a problem!" );
                   }
             });
