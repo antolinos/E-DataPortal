@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+//import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 
 import './App.css';
-import LoginForm from './components/Login/LoginForm'
-import Header from './components/Header.js'
-import List from './components/List.js'
+//import LoginForm from './components/Login/LoginForm'
+//import Header from './components/Header.js'
+//import List from './components/List.js'
 import LoginContainer from './containers/LoginContainer.js';
 
 class App extends Component {
   render() {
-    return (
+    return <LoginContainer></LoginContainer>
 
-    <Router>
+   /* <Router>
       <div>
         <Header></Header>
           <ul>
@@ -29,25 +29,15 @@ class App extends Component {
 
           <hr />
           
-          <Route exact path="/" component={Login} />
+         
           <Route path="/login" component={LoginContainer} />
           <Route path="/about" component={Home} />
           <Route path="/topics" component={List} />
         </div>
       </Router>
-    );
+    );*/
   }
 }
 
-const Login = () => (
-  <LoginForm username="" password="">  
-  </LoginForm>
-);
-
-const Home = () => (
-  <div>
-    <h2>Home</h2>
-  </div>
-);
-
 export default App;
+

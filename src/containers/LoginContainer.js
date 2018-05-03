@@ -1,23 +1,25 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { signIn,
-         doSignOut} from '../actions';
-import { setLoading } from '../actions/general';
-import Login from '../components/Login/LoginForm';
+import { doSignIn} from '../actions/user.js';
 
+import Login from '../components/Login/LoginForm';
+import Header from '../components/Header.js'
+import {Menu} from '../components/Menu.js'
 
 class LoginContainer extends Component {
-  render() {
+  render() {        
     return (
-      <Login
-        {...this.props}
-      />
+      <div>
+        <Header></Header>
+        <Menu></Menu>
+        <Login {...this.props}></Login>
+      </div>
     );
   }
 }
 
-function mapStateToProps(state) {
+function mapStateToProps(state) {  
   return {
     user: state.user
     /*loading: state.general.loading,
@@ -30,12 +32,9 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    signIn: bindActionCreators(signIn, dispatch),
-    doSignOut: bindActionCreators(doSignOut, dispatch),
-    setLoading: bindActionCreators(setLoading, dispatch),
-   /* selectProposal: bindActionCreators(selectProposal, dispatch),
-    sendSelectProposal: bindActionCreators(sendSelectProposal, dispatch),
-    hideProposalsForm: bindActionCreators(hideProposalsForm, dispatch)*/
+    doSignIn: bindActionCreators(doSignIn, dispatch),
+    //doSignOut: bindActionCreators(doSignOut, dispatch)
+    //setLoading: bindActionCreators(setLoading, dispatch),  
   };
 }
 

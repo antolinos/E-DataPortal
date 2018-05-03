@@ -1,18 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types'
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-import { signIn } from '../../actions'
-import {Modal, Form, FormGroup, Col, ControlLabel, FormControl, Button } from 'react-bootstrap/lib';
-import loader from '../../images/loader.gif';
+//import { bindActionCreators } from 'redux';
+//import { connect } from 'react-redux';
+//import { doSignIn } from '../../actions'
+import {Modal, Form, FormGroup, Col, ControlLabel, FormControl } from 'react-bootstrap/lib';
+//import loader from '../../images/loader.gif';
+import Button from 'react-bootstrap-button-loader';
 
 
 class LoginForm extends React.Component {
   constructor(props) {
-    super(props);
-        
+    super(props);            
     this.onSignInClicked = this.onSignInClicked.bind(this);
     this.handleKeyPress = this.handleKeyPress.bind(this);
+    this.loading = false;
   }
 
  handleKeyPress(target) {
@@ -24,17 +25,20 @@ class LoginForm extends React.Component {
     const username = this.loginID.value;   
     const password = this.password.value;   
     //this.props.setLoading(true);
-    this.props.signIn(username, password);
+    this.loading = true;    
+    this.props.doSignIn(username, password);
+    this.loading = false;
   }
 
   render() {  
-     if (this.props.loading) {
+     /*if (this.loading) {
       return <img alt="" src={loader} className="centered" />;
-    }  
+    }  */
+    
     return (
       <div className="static-modal">
         <Modal.Dialog autoFocus>
-          <Modal.Header closeButton>
+          <Modal.Header>            
             <Modal.Title>ESRF Data Portal</Modal.Title>
           </Modal.Header>
           <Modal.Body>
@@ -44,8 +48,7 @@ class LoginForm extends React.Component {
                           Login
                         </Col>
                         <Col sm={10}>                      
-                          <FormControl type="text" placeholder="LoginID" autoFocus required 
-                          inputRef={(ref) => {this.loginID = ref;}}
+                          <FormControl type="text" placeholder="LoginID" autoFocus required  inputRef={(ref) => {this.loginID = ref;}}
                           />
                         </Col>
                       </FormGroup>
@@ -58,14 +61,11 @@ class LoginForm extends React.Component {
                           <FormControl type="password" placeholder="Password" onKeyPress={this.handleKeyPress} 
                           inputRef={(ref) => {this.password = ref;}} />
                         </Col>
-                      </FormGroup>                     
-                      <FormGroup>
-                        <Col smOffset={2} sm={10}>
-                        {/* <Button type="submit" onClick={()=>this.props.setUser("Marcus", "")}>Sign in</Button> */}
-                          <Button type="submit" bsStyle="primary" onClick={this.onSignInClicked}>Sign in</Button>
-                        </Col>
-                      </FormGroup>
+                      </FormGroup>                                          
                     </Form>
+                    <div  className="center-block text-center">                                      
+                              <Button type="submit" loading={this.loading} bsStyle="primary" onClick={this.onSignInClicked}>Sign In</Button>                          
+                    </div>
          </Modal.Body>
       </Modal.Dialog>
     </div>
@@ -75,10 +75,10 @@ class LoginForm extends React.Component {
 }
 
 LoginForm.propTypes = {  
-  username: PropTypes.string,
-  password: PropTypes.string
+  username: PropTypes.string 
 }
 
+/*
 function mapStateToProps(state) {
   return {
     user: state.user
@@ -87,11 +87,13 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    signIn: bindActionCreators(signIn, dispatch)
+    signIn: bindActionCreators(doSignIn, dispatch),   
   };
 }
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(LoginForm);
+)(LoginForm);*/
+
+export default LoginForm;
