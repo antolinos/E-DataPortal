@@ -3,10 +3,10 @@ import PageHeader from 'react-bootstrap/lib/Grid';
 
 class Header extends React.Component {
   render() {
-    return   <PageHeader>
-                        <img src="/static/media/logo.5d5d9eef.svg" className="App-logo" alt="logo" />
-                         EDP <small>Electronic Data Portal</small>
-            </PageHeader>;
+    return   null
+            /*<PageHeader>                        
+                         <h1>Wall-e-log <small>ESRF Data Portal</small></h1> 
+            </PageHeader>;*/
   }
 }
 export default Header

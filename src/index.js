@@ -1,6 +1,9 @@
 import React from 'react';
 import { render } from 'react-dom'
+import { PersistGate } from 'redux-persist/integration/react'
 import { createStore, applyMiddleware } from 'redux'
+import { persistStore, persistReducer } from 'redux-persist'
+import storage from 'redux-persist/lib/storage'
 import { Provider } from 'react-redux'
 import logger  from 'redux-logger'
 import thunk from 'redux-thunk'
@@ -17,16 +20,25 @@ const middleware = [ thunk ];
   middleware.push(createLogger());
 }*/
 
+const persistConfig = {
+  key: 'root',
+  storage,
+}
+
+const persistedReducer = persistReducer(persistConfig, reducer)
+
 const store = createStore(
-  reducer,
+  persistedReducer,
   applyMiddleware(...middleware, logger, thunk)
 )
 
-
+const persistor = persistStore(store)
 
 render(
   <Provider store={store}>
-    <App />
+    <PersistGate loading={null} persistor={persistor}>
+      <App />
+    </PersistGate>
   </Provider>,
   document.getElementById('root')
 )

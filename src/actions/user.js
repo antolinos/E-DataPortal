@@ -4,17 +4,17 @@ import ICAT from '../config/icat.js'
 import {
   //SIGN_IN,
   LOGGED_IN,
-  //SIGN_OUT
+  LOG_OUT
 } from '../constants/ActionTypes'
 
-/*
-export function doSignOut(user) {
+
+export function doLogOut(user) { 
   return {
-    type: SIGN_OUT,
+    type: LOG_OUT,
     user
   };
 }
-*/
+
 
 export function setLoginInfo(user) {
   return {

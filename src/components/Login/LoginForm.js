@@ -1,10 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types'
-//import { bindActionCreators } from 'redux';
-//import { connect } from 'react-redux';
-//import { doSignIn } from '../../actions'
-import {Modal, Form, FormGroup, Col, ControlLabel, FormControl } from 'react-bootstrap/lib';
-//import loader from '../../images/loader.gif';
+import {Glyphicon, Modal, Form, FormGroup, Col, ControlLabel, FormControl } from 'react-bootstrap/lib';
 import Button from 'react-bootstrap-button-loader';
 
 
@@ -23,17 +19,17 @@ class LoginForm extends React.Component {
   }
   onSignInClicked(e) {   
     const username = this.loginID.value;   
-    const password = this.password.value;   
-    //this.props.setLoading(true);
+    const password = this.password.value;       
     this.loading = true;    
     this.props.doSignIn(username, password);
     this.loading = false;
   }
 
-  render() {  
-     /*if (this.loading) {
-      return <img alt="" src={loader} className="centered" />;
-    }  */
+  render() {   
+    /** If there is sessionId it means that we are already been authenticated **/       
+     if (this.props.user.sessionId) {
+      return null;
+    }  
     
     return (
       <div className="static-modal">
@@ -63,8 +59,10 @@ class LoginForm extends React.Component {
                         </Col>
                       </FormGroup>                                          
                     </Form>
-                    <div  className="center-block text-center">                                      
-                              <Button type="submit" loading={this.loading} bsStyle="primary" onClick={this.onSignInClicked}>Sign In</Button>                          
+                    <div  className="center-block text-center">                                                                    
+                              <Button type="submit" loading={this.loading} bsStyle="primary" onClick={this.onSignInClicked}>
+                                  <Glyphicon glyph="glyphicon glyphicon-log-in" /> Log in
+                              </Button>                        
                     </div>
          </Modal.Body>
       </Modal.Dialog>
