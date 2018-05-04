@@ -2,7 +2,7 @@ var ICAT =
 { 
     server: "https://icat.esrf.fr", 
     connection : {
-          plugins :['db']
+          plugins :['esrf']
     }
 };           
 

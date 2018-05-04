@@ -1,10 +1,11 @@
 import $ from 'jquery'; 
-import ICAT from '../config/icat.js'
+import ICAT from '../config/icat/icat.js'
 
 import {
-  //SIGN_IN,
+  LOG_IN,
   LOGGED_IN,
-  LOG_OUT
+  LOG_OUT,
+  LOGIN_ERROR
 } from '../constants/ActionTypes'
 
 
@@ -23,9 +24,9 @@ export function setLoginInfo(user) {
   };
 }
 
-export function doSignIn(username, password) {
+export function doSignIn(username, password) {  
   let connection = {
-          plugin : 'db',
+          plugin : ICAT.connection.plugins[0],
           credentials : [
               {
                   "username" : username,
@@ -39,15 +40,18 @@ export function doSignIn(username, password) {
                   url: ICAT.server + "/icat/session",		
                   data: { json : JSON.stringify(connection) },		
                   type: "post",	dataType : "json",		
+                  beforeSend : function(){
+                      dispatch({type: LOG_IN, username: username});  
+                  },  
                   success: function( data ) {			
                       if (data){
                         if (data.sessionId){                                                    
-                            dispatch({type: LOGGED_IN, username: username, sessionId: data.sessionId})                        
+                            dispatch({type: LOGGED_IN, username: username, sessionId: data.sessionId});                        
                         }
                       }                      
                   },			
                   error: function(error) {                                          
-                      alert( "Sorry, there was a problem!" );
+                      dispatch({type: LOGIN_ERROR, username: username, error : "Authentication Failed" }); 
                   }
             });
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types'
-import {Glyphicon, Modal, Form, FormGroup, Col, ControlLabel, FormControl } from 'react-bootstrap/lib';
+import {Alert, Glyphicon, Modal, Form, FormGroup, Col, ControlLabel, FormControl } from 'react-bootstrap/lib';
 import Button from 'react-bootstrap-button-loader';
 
 
@@ -9,7 +9,10 @@ class LoginForm extends React.Component {
     super(props);            
     this.onSignInClicked = this.onSignInClicked.bind(this);
     this.handleKeyPress = this.handleKeyPress.bind(this);
-    this.loading = false;
+    this.state = {
+      isLoading : false,
+      error : null
+    }
   }
 
  handleKeyPress(target) {
@@ -17,17 +20,21 @@ class LoginForm extends React.Component {
       this.onSignInClicked();
     }
   }
-  onSignInClicked(e) {   
-    const username = this.loginID.value;   
-    const password = this.password.value;       
-    this.loading = true;    
-    this.props.doSignIn(username, password);
-    this.loading = false;
+  onSignInClicked(e) {           
+    this.setState({ isLoading: true }); 
+    this.props.doSignIn(this.loginID.value, this.password.value);  
+  
+  }
+
+  componentDidMount() {
+    this.setState({ isLoading: false });
   }
 
   render() {   
+    const { isLoading, error } = this.state;
+
     /** If there is sessionId it means that we are already been authenticated **/       
-     if (this.props.user.sessionId) {
+    if (this.props.user.sessionId) {      
       return null;
     }  
     
@@ -60,10 +67,14 @@ class LoginForm extends React.Component {
                       </FormGroup>                                          
                     </Form>
                     <div  className="center-block text-center">                                                                    
-                              <Button type="submit" loading={this.loading} bsStyle="primary" onClick={this.onSignInClicked}>
+                            <Button type="submit" loading={this.props.user.isAuthenticating} bsStyle="primary" onClick={this.onSignInClicked}>
                                   <Glyphicon glyph="glyphicon glyphicon-log-in" /> Log in
-                              </Button>                        
+                           </Button>                        
                     </div>
+                    <div  className="center-block text-center" style={{marginTop: '10px'}}>  
+                        <LoginAlertMessage error={this.props.user.error}></LoginAlertMessage>    
+                    </div>                  
+
          </Modal.Body>
       </Modal.Dialog>
     </div>
@@ -71,6 +82,20 @@ class LoginForm extends React.Component {
     );
   }
 }
+
+class LoginAlertMessage extends React.Component{
+    constructor(props){         
+         super(props);         
+    }
+    
+    render(){
+      if (!this.props.error){
+        return null;
+      }
+      return <Alert bsStyle="warning"><h4>{this.props.error}</h4></Alert>;
+  }  
+};  
+
 
 LoginForm.propTypes = {  
   username: PropTypes.string 

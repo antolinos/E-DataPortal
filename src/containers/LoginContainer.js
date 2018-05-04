@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { doSignIn, doLogOut } from '../actions/user.js';
+import { doSignIn, doLogOut } from '../actions/login.js';
 
 import Login from '../components/Login/LoginForm';
 import Header from '../components/Header.js'
