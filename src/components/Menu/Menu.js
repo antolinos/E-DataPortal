@@ -1,6 +1,5 @@
 import React from 'react';
-import { Glyphicon, Thumbnail, Nav, Image, NavItem, NavDropdown, MenuItem, Navbar, FormGroup, FormControl, Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Glyphicon, Nav, NavItem, NavDropdown, MenuItem, Navbar, Button } from 'react-bootstrap';
 import logo from'../../images/ebs.gif';
 import './Menu.css';
 
@@ -24,7 +23,7 @@ export class Menu extends React.Component {
     return  <Navbar collapseOnSelect   style={{ marginTop:'5px'}}>
             <Navbar.Header >                             
               <Navbar.Brand >
-                 <a href="/" style={{fontSize:'24px'}}><img src={logo}  style={{height:'15', width:'15'}} />ESRF Data Portal</a>
+                 <a href="/" style={{fontSize:'24px'}}><img alt="" src={logo}  style={{height:'15', width:'15'}} />ESRF Data Portal</a>
               </Navbar.Brand>
               <Navbar.Toggle />
             </Navbar.Header>

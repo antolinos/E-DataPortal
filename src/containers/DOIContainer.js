@@ -1,13 +1,8 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import axios from 'axios';
 
-
-import { fetchInvestigationsWithDOI} from '../actions/myData.js';
-import Login from '../components/Login/LoginForm';
-import Header from '../components/Header.js'
-import { Menu } from '../components/Menu/Menu.js'
+import { fetchInvestigationsWithDOI} from '../actions/data.js';
 import InvestigationTable  from "../components/Investigation/InvestigationTable.js"
 
 
@@ -26,8 +21,7 @@ class DOIContainer extends Component {
     this.props.fetchInvestigationsWithDOI(this.state.sessionId, this.state.username);     
   }
 
-  render() {        
-   
+  render() {           
      return (<InvestigationTable data={this.props.doi}></InvestigationTable>);
   }
 }

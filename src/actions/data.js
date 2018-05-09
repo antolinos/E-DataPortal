@@ -1,9 +1,15 @@
 import axios from "axios"
 import { 
   getInvestigationsByUser,
-  getInvestigationsWithDOI } from '../api/icat/icat.js'
+  getInvestigationsWithDOI,
+  getDatasetsByInvestigationId 
+} from '../api/icat/icat.js'
 
-import { FECTH_INVESTIGATIONS, FECTH_INVESTIGATIONS_DOI} from '../constants/ActionTypes'
+import { 
+  FECTH_INVESTIGATIONS, 
+  FECTH_INVESTIGATIONS_DOI, 
+  FECTH_DATASETS_BY_INVESTIGATION_ID
+} from '../constants/ActionTypes'
 
 export function fetchMyInvestigations(sessionId, username) {
   return function (dispatch) {
@@ -27,3 +33,13 @@ export function fetchInvestigationsWithDOI(sessionId, username) {
   }      
 }
 
+
+export function fetchDatasetsByInvestigationId(sessionId, username, investigationId){  
+   return function (dispatch) {
+    dispatch(
+      {
+        type: FECTH_DATASETS_BY_INVESTIGATION_ID,
+        payload : axios.get(getDatasetsByInvestigationId(sessionId, username, investigationId))      
+    });
+  }     
+}

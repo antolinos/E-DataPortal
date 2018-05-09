@@ -1,22 +1,16 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import axios from 'axios';
-
-
-import { fetchMyInvestigations} from '../actions/myData.js';
-import Login from '../components/Login/LoginForm';
-import Header from '../components/Header.js'
-import { Menu } from '../components/Menu/Menu.js'
+import { fetchMyInvestigations} from '../actions/data.js';
 import InvestigationTable  from "../components/Investigation/InvestigationTable.js"
 
 
-class MyDataContainer extends Component {
+class InvestigationsContainer extends Component {
   constructor(props) {
     super(props);    
 
     this.state = {
-      investigations : this.props.myData.investigations,
+      investigations : this.props.data.investigations,
       error : null,
       username : this.props.user.username,
       sessionId : this.props.user.sessionId,
@@ -28,14 +22,15 @@ class MyDataContainer extends Component {
   }
 
   render() {        
-    return (<InvestigationTable data={this.props.myData}></InvestigationTable>);
+    return (<InvestigationTable data={this.props.data}></InvestigationTable>);
   }
 }
 
 function mapStateToProps(state) {  
+  
   return {
     user: state.user,  
-    myData : state.myData
+    data : state.data
   };
 }
 
@@ -48,4 +43,4 @@ function mapDispatchToProps(dispatch) {
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(MyDataContainer);
+)(InvestigationsContainer);

@@ -31,7 +31,7 @@ class LoginForm extends React.Component {
   }
 
   render() {   
-    const { isLoading, error } = this.state;
+   
 
     /** If there is sessionId it means that we are already been authenticated **/       
     if (this.props.user.sessionId) {      
