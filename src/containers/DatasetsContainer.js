@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import { fetchDatasetsByInvestigationId } from '../actions/data.js';
-import InvestigationTable  from "../components/Investigation/InvestigationTable.js"
+import DatasetTable  from "../components/Dataset/DatasetTable.js"
 
 
 class DatasetsContainer extends Component {
@@ -23,7 +23,7 @@ class DatasetsContainer extends Component {
   }
 
   render() {           
-     return this.state.username;
+     return <DatasetTable datasets={ this.props.data.datasets }></DatasetTable>;
   }
 }
 

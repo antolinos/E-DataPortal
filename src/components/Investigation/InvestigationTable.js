@@ -17,7 +17,6 @@ class InvestigationTable extends React.Component {
 
   doiFormatter(cell, row) {   // String example    
     if (cell != null) {    
-        //return `<span class='doiBadge borderRadius-5 font-1p4rem'>DOI<a id='doiLink' href='https://doi.esrf.fr/{cell}'>{cell}</a></span>`;
          return `<span class='doiBadge borderRadius-5 font-1p4rem'>DOI<a id='doiLink' target='_blank' href='https://doi.esrf.fr/${cell}' >${cell}</a></span>`;
     }
   }
