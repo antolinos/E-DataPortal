@@ -18,9 +18,9 @@ class InvestigationTable extends React.Component {
 
   doiFormatter(cell, row) {       
     if (cell != null) {    
-         return `<span class='doiBadge borderRadius-5 font-1p4rem'>DOI<a id='doiLink' target='_blank' href='https://doi.esrf.fr/${cell}' >${cell}</a></span>`;
+         return <span className='doiBadge borderRadius-5 font-1p4rem'>DOI<a id='doiLink' target='_blank' href='https://doi.esrf.fr/${cell}' >{cell}</a></span>;
     }
-    return <span class='glyphicon glyphicon-lock'></span>;
+    return <span className='glyphicon glyphicon-lock'></span>;
   }
 
   dateFormatter(cell, row) {       
@@ -30,11 +30,11 @@ class InvestigationTable extends React.Component {
   }
 
   volumeFormatter(cell, row) {       
-    return "<kbd style='background-color:#E8E8E8;color:gray;'>" + Math.floor((Math.random() * 100) + 1) + " GB </kbd>";    
+    return <kbd style={{'background-color':'#E8E8E8','color':'orange'}}>{Math.floor((Math.random() * 100) + 1)} GB </kbd>;    
   }
 
   datasetFormatter(cell, row) {      
-    return "<kbd style='background-color:#E8E8E8;color:gray;'>" + Math.floor((Math.random() * 10000) + 100) + "</kbd>";    
+    return <kbd style={{'background-color':'#E8E8E8','color':'orange'}}>{Math.floor((Math.random() * 10000) + 100)} </kbd>;    
   }
 
   beamlineFormatter(cell, row) {      
@@ -42,11 +42,9 @@ class InvestigationTable extends React.Component {
   }
 
    nameFormatter(cell, investigation) {          
-    //return `<a href='/investigation/${row.id}'><span class="glyphicon glyphicon-circle-arrow-right"> ${cell} </span></a>`;    
-
-    return <Link to={`/investigation/${investigation.id}`}>
-          <span class="glyphicon glyphicon-circle-arrow-right"> {cell} </span>
-      </Link>
+     return <Link to={`/investigation/${investigation.id}`}>
+       <span className="glyphicon glyphicon-circle-arrow-right"> {cell} </span>
+     </Link>
   }
 
   render() {   

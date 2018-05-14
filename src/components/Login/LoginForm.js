@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom';
 import {Alert, Glyphicon, Modal, Form, FormGroup, Col, ControlLabel, FormControl } from 'react-bootstrap/lib';
 import Button from 'react-bootstrap-button-loader';
 
@@ -69,7 +70,9 @@ class LoginForm extends React.Component {
                     <div  className="center-block text-center">                                                                    
                             <Button type="submit" loading={this.props.user.isAuthenticating} bsStyle="primary" onClick={this.onSignInClicked}>
                                   <Glyphicon glyph="glyphicon glyphicon-log-in" /> Log in
-                           </Button>                        
+                           </Button>   
+                           <br /><br />
+                           <span><Link  to="/"> or Log in as anonymous</Link></span>                     
                     </div>
                     <div  className="center-block text-center" style={{marginTop: '10px'}}>  
                         <LoginAlertMessage error={this.props.user.error}></LoginAlertMessage>    

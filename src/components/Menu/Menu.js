@@ -33,18 +33,12 @@ export class Menu extends React.Component {
                   Dashboard
                 </NavItem>            
                 <NavItem eventKey={2} href="/investigations">
-                   My Data
+                   Data
                 </NavItem>
-                <NavItem eventKey={3} href="#" disabled>
-                  Open Data
+                <NavItem eventKey={2} href="/investigations" disabled>
+                   DOI
                 </NavItem>
-                <NavDropdown eventKey={4} title="Datasets" id="basic-nav-dropdown">
-                  <MenuItem eventKey={4.1} href="/doi">DOI</MenuItem>
-                  <MenuItem disabled eventKey={4.2}>LogBook</MenuItem>
-                  <MenuItem disabled eventKey={4.3}>Something else here</MenuItem>
-                  <MenuItem disabled divider />
-                  <MenuItem disabled eventKey={4.3}>Separated link</MenuItem>
-                </NavDropdown>
+               
               </Nav>
               <Nav pullRight>
                 <NavItem eventKey={5} href="#">

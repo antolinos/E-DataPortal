@@ -1,55 +1,60 @@
 import React from 'react';
 import Moment from 'react-moment';
-import { Grid, Row, Col, Tab, Tabs } from 'react-bootstrap';
+import { Grid, Row, Col, Tab, Tabs, Panel, PanelGroup } from 'react-bootstrap';
 import './DatasetTable.css';
+import DatasetHeader from "./DatasetHeader/DatasetHeader.js"
+import DatasetFooter  from "./DatasetFooter/DatasetFooter.js"
+import DatasetSummary from "./DatasetSummary/DatasetSummary.js"                            
 
 class DatasetTable extends React.Component {
   constructor(props) {
-    super(props);    
+    super(props);
     this.state = {
-      datasets : props.datasets
+      datasets: props.datasets,
+      expanded: false
     }
   }
-  componentDidMount(){
-    
-  }
 
-  render() {   
-    if (this.props.fetching){
-            return "Loading";
-    }
-    const options = {
-      paginationSize: 5,
-      sizePerPage: 25,
-      paginationShowsTotal: true,
-      hidePageListOnlyOnePage: true
-    };
-    
-    return (        
-        <div className='investigation-table-container'>
-          <Grid>
-
-               {
-                this.state.datasets.map((city, id) => (
-                  <Row className="show-grid border right-tabs clearfix" style={{ height:'300px' }}>
-                    <Col xs={12} md={12}>
-                    Dataset Name
-                    <Tabs defaultActiveKey={2} id="uncontrolled-tab-example" right>
-                            <Tab eventKey={1} title="Tab 1">
-                              Tab 1 content
+  render() {
+    return (
+      <div className='dataset-table-container' >
+        <Grid fluid>
+          {
+            this.state.datasets.map((dataset, id) => (
+              <Row key={id} className="show-grid dataset-table-row" >
+                <Col xs={12} md={12}>
+                  <PanelGroup accordion id="myPanelGroup"  >
+                    <Panel >
+                      <Panel.Heading>
+                        <Panel.Title toggle>
+                          <DatasetHeader 
+                                definition={dataset.definition} 
+                                name={dataset.name}
+                                startDate={dataset.startDate}
+                          ></DatasetHeader>
+                        </Panel.Title>
+                      </Panel.Heading>
+                      <Panel.Collapse >
+                        <Panel.Body >
+                          <Tabs id="tabs">
+                            <Tab eventKey={1} title="Summary">
+                              <DatasetSummary dataset={dataset} ></DatasetSummary>
                             </Tab>
-                            <Tab eventKey={2} title="Tab 2">
-                              Tab 2 content
-                            </Tab>
-                            <Tab eventKey={3} title="Tab 3" disabled>
-                              Tab 3 content
-                            </Tab>
+                            <Tab eventKey={2} title="Metadata">Tab 2 content
+                                      </Tab>
                           </Tabs>
-                    </Col>
-                </Row>
-                ))
-                }
-          </Grid>;
+                        </Panel.Body>
+                      </Panel.Collapse>
+                      <Panel.Footer>
+                        <DatasetFooter dataset={dataset} ></DatasetFooter>
+                      </Panel.Footer>
+                    </Panel>
+                  </PanelGroup>
+                </Col>
+              </Row>
+            ))
+          }
+        </Grid>;
       </div>
 
     );

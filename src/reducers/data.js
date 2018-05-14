@@ -2,7 +2,8 @@ import {
   FECTH_INVESTIGATIONS, 
   FECTH_INVESTIGATIONS_FULFILLED, 
   FECTH_INVESTIGATIONS_PENDING, 
-  FECTH_DATASETS_BY_INVESTIGATION_ID_FULFILLED
+  FECTH_DATASETS_BY_INVESTIGATION_ID_FULFILLED,
+  FECTH_DATASETS_BY_INVESTIGATION_ID_REJECTED
 } from '../constants/ActionTypes'
 
 
@@ -24,9 +25,17 @@ const data = (state = initialState, action) => {
         break;
     }
     case FECTH_DATASETS_BY_INVESTIGATION_ID_FULFILLED:{
-        /** this groups by column 0 that correspond to investigationId */        
+        /** this groups by column 0 that correspond to investigationId */                
         let datasets = parametersToDatasetObject(groupBy(action.payload.data, 0));        
         state = {...state, datasets: datasets, fetched: true, fetching: false}     
+        break;
+    }
+    case FECTH_DATASETS_BY_INVESTIGATION_ID_REJECTED:{
+        // TODO: this should be managed properly    
+        if (action.payload.error){
+            alert(action.payload);
+        }
+        state = {...state, fetched: false, fetching: false}     
         break;
     }
     default:
@@ -56,10 +65,17 @@ var parametersToDatasetObject = function(parametersGroupedByInvestigationId){
                 datasets[datasetId] = {};
             }
              datasets[datasetId][key] = value;
+            /** Some metadata at level of dataset to be added as parameters of the dataset */    
+             datasets[datasetId]["id"] =  param[0];
+             datasets[datasetId]["name"] =  param[1];
+             datasets[datasetId]["startDate"] =  param[2];
+             datasets[datasetId]["endDate"] =  param[3];
+             datasets[datasetId]["investigationName"] =  param[4];
         }       
     }
+
     var array = [];
-    for (var ds in datasets){   
+    for (var ds in datasets){           
         array.push(datasets[ds]);
     }
     return array;
