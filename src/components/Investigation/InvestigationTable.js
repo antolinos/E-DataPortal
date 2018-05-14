@@ -1,6 +1,7 @@
 import React from 'react';
 import Moment from 'react-moment';
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
+import { Link } from 'react-router-dom';
 import './InvestigationTable.css';
 
 class InvestigationTable extends React.Component {
@@ -15,28 +16,37 @@ class InvestigationTable extends React.Component {
     
   }
 
-  doiFormatter(cell, row) {   // String example    
+  doiFormatter(cell, row) {       
     if (cell != null) {    
          return `<span class='doiBadge borderRadius-5 font-1p4rem'>DOI<a id='doiLink' target='_blank' href='https://doi.esrf.fr/${cell}' >${cell}</a></span>`;
     }
+    return <span class='glyphicon glyphicon-lock'></span>;
   }
 
-  dateFormatter(cell, row) {   // String example    
+  dateFormatter(cell, row) {       
     if (cell != null) {          
         return <Moment parse="YYYY-MM-DD HH:mm" format="DD/MM/YYYY">${cell}</Moment>;
     }
   }
 
-  volumeFormatter(cell, row) {   // String example    
+  volumeFormatter(cell, row) {       
     return "<kbd style='background-color:#E8E8E8;color:gray;'>" + Math.floor((Math.random() * 100) + 1) + " GB </kbd>";    
   }
 
-  datasetFormatter(cell, row) {   // String example    
+  datasetFormatter(cell, row) {      
     return "<kbd style='background-color:#E8E8E8;color:gray;'>" + Math.floor((Math.random() * 10000) + 100) + "</kbd>";    
   }
 
-   nameFormatter(cell, row) {   // String example         
-    return `<a href='/investigation/${row.id}'><span class="glyphicon glyphicon-circle-arrow-right"> ${cell} </span></a>`;    
+  beamlineFormatter(cell, row) {      
+    return cell.toUpperCase();    
+  }
+
+   nameFormatter(cell, investigation) {          
+    //return `<a href='/investigation/${row.id}'><span class="glyphicon glyphicon-circle-arrow-right"> ${cell} </span></a>`;    
+
+    return <Link to={`/investigation/${investigation.id}`}>
+          <span class="glyphicon glyphicon-circle-arrow-right"> {cell} </span>
+      </Link>
   }
 
   render() {   
@@ -63,13 +73,13 @@ class InvestigationTable extends React.Component {
             condensed> 
             <TableHeaderColumn width='10%' hidden isKey dataField='id'>id</TableHeaderColumn>           
             <TableHeaderColumn width='10%'  dataFormat={ this.nameFormatter } dataField='name'>Name</TableHeaderColumn>
-            <TableHeaderColumn dataSort width='5%' dataField='visitId'>Beamline</TableHeaderColumn>
+            <TableHeaderColumn dataSort width='5%' dataField='visitId' dataFormat={ this.beamlineFormatter }>Beamline</TableHeaderColumn>
             <TableHeaderColumn dataSort dataField='summary'>Title</TableHeaderColumn>
             <TableHeaderColumn width='5%' dataFormat={ this.datasetFormatter }>Datasets</TableHeaderColumn>
             <TableHeaderColumn width='5%'  dataFormat={ this.volumeFormatter }>Volume</TableHeaderColumn>
             <TableHeaderColumn dataSort width='5%' dataField='startDate' dataFormat={ this.dateFormatter }>Date</TableHeaderColumn>  
              <TableHeaderColumn dataSort width='5%' dataField='releaseDate' dataFormat={ this.dateFormatter }>Release</TableHeaderColumn>            
-            <TableHeaderColumn width='15%' dataFormat={ this.doiFormatter } dataField='doi'></TableHeaderColumn>
+            <TableHeaderColumn width='15%' dataFormat={ this.doiFormatter } dataField='doi' dataAlign='center'></TableHeaderColumn>
           </BootstrapTable>
       </div>
 
