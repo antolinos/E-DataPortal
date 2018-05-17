@@ -22,7 +22,10 @@ class InvestigationsContainer extends Component {
   }
 
   render() {        
-    return (<InvestigationTable data={this.props.data}></InvestigationTable>);
+    return (
+      <div>       
+        <InvestigationTable data={this.props.data}></InvestigationTable>
+      </div>);
   }
 }
 
@@ -44,3 +47,10 @@ export default connect(
     mapStateToProps,
     mapDispatchToProps
 )(InvestigationsContainer);
+
+
+
+
+
+
+

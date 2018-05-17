@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Glyphicon, Nav, NavItem, NavDropdown, MenuItem, Navbar, Button } from 'react-bootstrap';
 import logo from'../../images/ebs.gif';
 import './Menu.css';
@@ -20,10 +21,10 @@ export class Menu extends React.Component {
      if (!this.props.user.sessionId) {
       return null;
     }      
-    return  <Navbar collapseOnSelect   style={{ marginTop:'5px'}}>
+    return  <Navbar collapseOnSelect>
             <Navbar.Header >                             
               <Navbar.Brand >
-                 <a href="/" style={{fontSize:'24px'}}><img alt="" src={logo}  style={{height:'15', width:'15'}} />ESRF Data Portal</a>
+                 <Link to="/investigations" style={{fontSize:'24px'}}><img alt="" src={logo}  style={{height:'15', width:'15'}} />ESRF Data Portal</Link>
               </Navbar.Brand>
               <Navbar.Toggle />
             </Navbar.Header>
@@ -32,8 +33,8 @@ export class Menu extends React.Component {
                 <NavItem eventKey={1} href="#" disabled>
                   Dashboard
                 </NavItem>            
-                <NavItem eventKey={2} href="/investigations">
-                   Data
+                <NavItem eventKey={2}>
+                    <Link to="/investigations">Data</Link>
                 </NavItem>
                 <NavItem eventKey={2} href="/investigations" disabled>
                    DOI

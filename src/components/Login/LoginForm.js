@@ -40,7 +40,7 @@ class LoginForm extends React.Component {
     }  
     
     return (
-      <div className="static-modal">
+      <div>
         <Modal.Dialog autoFocus>
           <Modal.Header>            
             <Modal.Title>ESRF Data Portal</Modal.Title>
