@@ -1,0 +1,9 @@
+.column_parameter_value{     
+     font-size:12px;
+     font-weight: bold;
+}
+
+.table>tr {    
+    border-top : 1px rgb(221, 221, 221) solid;
+    font-size: 11px;
+}

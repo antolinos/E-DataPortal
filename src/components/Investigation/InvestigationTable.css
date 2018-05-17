@@ -1,0 +1,38 @@
+span.doiBadge {
+    font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;
+    color: #fff;
+    background: #000;
+    text-decoration: none;
+    padding: 2px 0 2px 4px;
+    border-color: #000;
+}
+
+span.doiBadge a {
+    color: #fff;
+    background: #09c;
+    text-decoration: none;
+    margin-left: 4px;
+    padding: 2px 5px 2px 4px;
+    border-radius: 0 5px 5px 0;
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+    background-color: transparent;
+    -webkit-text-decoration-skip: objects;
+}
+
+.borderRadius-5 {
+    border-radius: 5px;
+}
+.font-1p4rem {
+    font-size: 1.4rem;
+}
+
+.investigation-table-container{
+    margin-top: 5px;
+    margin-bottom: 10px;
+    margin-right: 30px;
+    margin-left: 30px;
+}

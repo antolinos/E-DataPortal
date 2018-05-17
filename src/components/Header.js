@@ -1,5 +1,4 @@
 import React from 'react';
-import PageHeader from 'react-bootstrap/lib/Grid';
 
 class Header extends React.Component {
   render() {

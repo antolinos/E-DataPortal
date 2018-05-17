@@ -8,9 +8,7 @@ import { Provider } from 'react-redux'
 import logger  from 'redux-logger'
 import thunk from 'redux-thunk'
 import reducer from './reducers'
-
-
-
+import promise from "redux-promise-middleware"
 import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
@@ -29,7 +27,7 @@ const persistedReducer = persistReducer(persistConfig, reducer)
 
 const store = createStore(
   persistedReducer,
-  applyMiddleware(...middleware, logger, thunk)
+  applyMiddleware(...middleware, logger, promise(), thunk)
 )
 
 const persistor = persistStore(store)
@@ -45,8 +43,7 @@ render(
 
 registerServiceWorker();
 
-store.subscribe(() => {
-  console.log("store changed", JSON.stringify(store.getState()))
+store.subscribe(() => {  
 })
 
 store.dispatch((dispatch) => {
