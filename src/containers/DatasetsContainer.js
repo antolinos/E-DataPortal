@@ -10,7 +10,7 @@ import {
   getDatasetsByInvestigationId
 } from '../api/icat/icat.js'
 import { Route } from 'react-router-dom'
-import from 'query-string'
+
 
 
 class DatasetsContainer extends Component {
@@ -18,7 +18,7 @@ class DatasetsContainer extends Component {
     super(props);
     this.onLogbookButtonClicked= this.onLogbookButtonClicked.bind(this);
     
-    debugger
+    
    
 
 
@@ -93,7 +93,8 @@ class DatasetsContainer extends Component {
                     <DatasetTable style={{ 'margin-top': '5px' }} datasets={this.state.datasets} fetching={this.state.fetching}></DatasetTable>
                   </div>);
         case "EVENTS":
-                  return  <div><DatasetContainerMenu onLogbookButtonClicked={this.onLogbookButtonClicked} ></DatasetContainerMenu>"Events"</div>;
+                  return  <div>
+                              <DatasetContainerMenu onLogbookButtonClicked={this.onLogbookButtonClicked} ></DatasetContainerMenu>"Events"</div>;
         default: 
                   return "Nothing to display";
     }
@@ -125,7 +126,7 @@ class DatasetContainerMenu extends Component {
     return value;
   }
   onLogbookButtonClicked(x,a){        
-    //this.props.onLogbookButtonClicked();
+    this.props.onLogbookButtonClicked();
     
   }
   //<ToggleButton onChange={this.onLogbookButtonClicked}  value={3}><span className="glyphicon glyphicon-comment"></span> Logbook</ToggleButton>
@@ -141,7 +142,7 @@ class DatasetContainerMenu extends Component {
           <ToggleButtonGroup type="radio" name="options" defaultValue={1}>
             <ToggleButton value={1}><span className="glyphicon glyphicon-tasks"></span> Datasets</ToggleButton>
             <ToggleButton value={2}><span className="glyphicon glyphicon-folder-open"></span> Files</ToggleButton>
-            
+            <ToggleButton onChange={this.onLogbookButtonClicked}  value={3}><span className="glyphicon glyphicon-comment"></span> Logbook</ToggleButton>
             <ToggleButton  value={3}>
               <span className="glyphicon glyphicon-comment"></span>
                 <Link to={{patname: logURL, search :"perspetive=logbook"}}>Logbook</Link> 
