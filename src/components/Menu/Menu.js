@@ -38,7 +38,9 @@ export class Menu extends React.Component {
                 <NavItem eventKey={2} href="/investigations" disabled>
                    DOI
                 </NavItem>
-               
+                <NavItem eventKey={4} href="/wallelog"> 
+                   WallElog  
+                </NavItem>
               </Nav>
               <Nav pullRight>
                 <NavItem eventKey={5} href="#">
