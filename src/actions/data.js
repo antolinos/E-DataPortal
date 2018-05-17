@@ -33,7 +33,7 @@ export function fetchInvestigationsWithDOI(sessionId, username) {
   }      
 }
 
-
+/*
 export function fetchDatasetsByInvestigationId(sessionId, username, investigationId){  
    return function (dispatch) {
     dispatch(
@@ -43,3 +43,4 @@ export function fetchDatasetsByInvestigationId(sessionId, username, investigatio
     });
   }     
 }
+*/

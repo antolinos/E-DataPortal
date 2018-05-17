@@ -2,15 +2,15 @@ import { CHANGE_PAGE } from '../constants/ActionTypes'
 
 const initialState = {
   page: null,
-  eventlist: null,
+  eventlist: [],
 }
 
 
-const wallelog = (state = initialState, action) => {
+const events = (state = initialState, action) => {
 
   switch (action.type) {
     case CHANGE_PAGE: {
-      if (action.page = "WALLELOG") {
+      if (action.page === "WALLELOG") {
 
         state = {
           ...state,
@@ -105,4 +105,4 @@ const wallelog = (state = initialState, action) => {
   return state
 }
 
-export default wallelog
+export default events;

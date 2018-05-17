@@ -9,8 +9,7 @@ class WalleLog extends React.Component {
         super(props);
     };
 
-    componentWillMount() {
-        debugger
+    componentWillMount() {        
         this.props.doLoadEvents();
     }
 
