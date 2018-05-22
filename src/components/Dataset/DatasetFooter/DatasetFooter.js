@@ -1,15 +1,8 @@
 import React from 'react';
-import Moment from 'react-moment';
+
 import './DatasetFooter.css';
 
 class DatasetFooter extends React.Component {
-  constructor(props) {    
-    super(props);          
-  }
-  componentDidMount(){
-    
-  }
-
   getStorageStatus(){
     if (Math.random() >= 0.5){
         return <kbd style={{'backgroundColor':'green'}}>ONLINE</kbd>;

@@ -2,8 +2,11 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { fetchMyInvestigations} from '../actions/data.js';
+import { doLogOut } from '../actions/login.js';
 import InvestigationTable  from "../components/Investigation/InvestigationTable.js"
-
+import { Menu }  from "../components/Menu/Menu.js"
+import Footer  from "../components/Footer.js"
+import InvestigationContainerMenu  from "./Investigation/InvestigationContainerMenu.jsx"
 
 class InvestigationsContainer extends Component {
   constructor(props) {
@@ -21,16 +24,21 @@ class InvestigationsContainer extends Component {
     this.props.fetchMyInvestigations(this.state.sessionId, this.state.username);   
   }
 
-  render() {        
+  render() {         
+     if ((!this.props.user) ||  (!this.props.user.sessionId)){      
+      return null;      
+    }
+
     return (
-      <div>       
-        <InvestigationTable data={this.props.data}></InvestigationTable>
-      </div>);
+        <div>
+          <Menu  {...this.props}></Menu>       
+          <InvestigationTable data={this.props.data}></InvestigationTable>
+          <Footer  {...this.props}></Footer>
+        </div>);
   }
 }
 
-function mapStateToProps(state) {  
-  
+function mapStateToProps(state) {    
   return {
     user: state.user,  
     data : state.data
@@ -39,7 +47,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    fetchMyInvestigations: bindActionCreators(fetchMyInvestigations, dispatch)    
+    fetchMyInvestigations: bindActionCreators(fetchMyInvestigations, dispatch),
+    doLogOut: bindActionCreators(doLogOut, dispatch)       
   };
 }
 

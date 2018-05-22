@@ -1,19 +1,11 @@
 
 .dataset-table-container{    
-    margin-top: 0px;
+    margin-top: 120px;
     margin-bottom: 10px;
-    margin-right: 30px;
-    margin-left: 30px;
+    margin-right: 10px;
+    margin-left: 10px;    
 }
 
 .dataset-table-row{     
      margin-top: 5px;
-}
-
-.menu-dataset-container{            
-    background-color:gray;
-    margin-right: 50px;
-    margin-left: 50px;
-    width:100%;
-    
 }

@@ -1,14 +1,12 @@
 import axios from "axios"
 import { 
   getInvestigationsByUser,
-  getInvestigationsWithDOI,
-  getDatasetsByInvestigationId 
+  getInvestigationsWithDOI,   
 } from '../api/icat/icat.js'
 
 import { 
   FECTH_INVESTIGATIONS, 
-  FECTH_INVESTIGATIONS_DOI, 
-  FECTH_DATASETS_BY_INVESTIGATION_ID
+  FECTH_INVESTIGATIONS_DOI
 } from '../constants/ActionTypes'
 
 export function fetchMyInvestigations(sessionId, username) {

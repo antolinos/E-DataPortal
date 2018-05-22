@@ -52,7 +52,7 @@ class InvestigationTable extends React.Component {
             return "Loading";
     }
     const options = {
-      paginationSize: 5,
+      paginationSize: 10,
       sizePerPage: 25,
       paginationShowsTotal: true,
       hidePageListOnlyOnePage: true

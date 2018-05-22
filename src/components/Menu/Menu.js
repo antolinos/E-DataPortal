@@ -1,7 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+
 import { LinkContainer } from 'react-router-bootstrap'
-import { Glyphicon, Nav, NavItem, NavDropdown, MenuItem, Navbar, Button } from 'react-bootstrap';
+import { Glyphicon, Nav, NavItem, Navbar, Button } from 'react-bootstrap';
 import logo from '../../images/ebs.gif';
 import './Menu.css';
 
@@ -12,49 +15,47 @@ export class Menu extends React.Component {
     this.onLogOutClicked = this.onLogOutClicked.bind(this);
   }
 
-  onLogOutClicked(e) {
+  onLogOutClicked(e) {    
     this.props.doLogOut();
   }
 
-
   render() {
     /** If there is not sessionId it means that we are not already been authenticated **/
-    if (!this.props.user.sessionId) {
-      return null;
+    if ((!this.props.user) ||  (!this.props.user.sessionId)){      
+    return <Navbar fluid className="navbar-fixed-top ">
+        <Navbar.Header>
+          <Navbar.Brand>
+            <Link to="/investigations" ><img alt="" src={logo} className='logo' /></Link>
+          </Navbar.Brand>
+          <Navbar.Toggle />
+        </Navbar.Header>       
+      </Navbar>;     
     }
-    return <Navbar collapseOnSelect>
-      <Navbar.Header >
-        <Navbar.Brand >
-          <Link to="/investigations" style={{ fontSize: '24px' }}><img alt="" src={logo} style={{ height: '15', width: '15' }} />ESRF Data Portal</Link>
-        </Navbar.Brand>
-        <Navbar.Toggle />
-      </Navbar.Header>
-      <Navbar.Collapse>
-        <Nav>
-          <NavItem eventKey={1} href="#" disabled>
-            Dashboard
-                </NavItem>
-          <LinkContainer to="/investigations">
-            <NavItem eventKey={1}>Data</NavItem>
-          </LinkContainer>
-          <NavItem eventKey={2} href="/investigations" disabled>
-            DOI
-                </NavItem>
-          <NavItem eventKey={4} href="/wallelog">
-            WallElog
-                </NavItem>
-        </Nav>
-        <Nav pullRight>
-          <NavItem eventKey={5} href="#">
+    return <Navbar fluid className="navbar-fixed-top ">
+        <Navbar.Header>
+          <Navbar.Brand>
+            <Link to="/investigations" ><img alt="" src={logo} className='logo' /></Link>
+          </Navbar.Brand>
+          <Navbar.Toggle />
+        </Navbar.Header>
+        <Navbar.Collapse>
+          <Nav>
+            <NavItem eventKey={1} href="#">
+              <Link to="/investigations" >Home</Link>
+            </NavItem>
+                   
+          </Nav>
+          <Nav pullRight>
+              <NavItem>
+                    <Button bsSize="small" onClick={this.onLogOutClicked} href="/" >
+                      <Glyphicon glyph="glyphicon glyphicon-log-out" /> Log out <strong>{this.props.user.username}</strong>
+                    </Button>
+               </NavItem>    
+            
+          </Nav>
+        </Navbar.Collapse>
+      </Navbar>;
 
-          </NavItem>
-        </Nav>
-        <Navbar.Form pullRight disabled>
-          <Button bsSize="small" onClick={this.onLogOutClicked} href="/">
-            <Glyphicon glyph="glyphicon glyphicon-log-out" /> Log out <strong>{this.props.user.username}</strong>
-          </Button>
-        </Navbar.Form>
-      </Navbar.Collapse>
-    </Navbar>;
+
   }
 };

@@ -1,5 +1,4 @@
 import React from 'react';
-import Moment from 'react-moment';
 import PropTypes from 'prop-types';
 import { Grid, Row, Col, Tab, Tabs, Panel, PanelGroup } from 'react-bootstrap';
 import Loading from '../Loading.jsx'
@@ -10,18 +9,13 @@ import DatasetSummary from "./DatasetSummary/DatasetSummary.js"
 
 
 class DatasetTable extends React.Component {
-  constructor(props) {
-    super(props);        
-  }
-
-  render() {    
-    
+   render() {    
     if (this.props.fetching){
       return <Loading></Loading>
-    }     
+    }           
     return (
       <div className='dataset-table-container' >
-        <Grid fluid>
+        <Grid fluid >
           {
             this.props.datasets.map((dataset, id) => (
               <Row key={id} className="show-grid dataset-table-row" >

@@ -8,7 +8,8 @@ import {
 
 const initialState =  {"username": null, "sessionId": null, "isAuthenticating":false, "error": null}
 
-const user = (state = initialState, action) => {    
+const user = (state = initialState, action) => {  
+      
   switch (action.type) {
     case LOG_IN: {      
         state = {...state,  username: action.username, isAuthenticating : true, error : null}                  
@@ -18,7 +19,7 @@ const user = (state = initialState, action) => {
         state = {...state, username: action.username, sessionId: action.sessionId, isAuthenticating : false, error : null}                  
         break;  
     }
-    case LOG_OUT: {
+    case LOG_OUT: {        
         state = {...state, username: null, sessionId: null, isAuthenticating : false, error : null}                
         break;  
     }

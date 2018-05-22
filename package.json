@@ -6,7 +6,7 @@
     "axios": "^0.18.0",
     "jquery": "^3.3.1",
     "moment": "^2.22.1",
-    "query-string": "^6.1.0",
+    "qhistory": "^1.0.0",
     "react": "^16.3.2",
     "react-bootstrap": "^0.32.1",
     "react-bootstrap-button-loader": "^1.0.11",

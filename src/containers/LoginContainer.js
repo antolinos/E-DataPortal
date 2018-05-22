@@ -6,26 +6,19 @@ import { doSignIn, doLogOut } from '../actions/login.js';
 import Login from '../components/Login/LoginForm';
 import Header from '../components/Header.js'
 import { Menu } from '../components/Menu/Menu.js'
-import { Grid, Row, Col } from 'react-bootstrap';
+import { Footer } from '../components/Footer.js'
+
 
 class LoginContainer extends Component {
   render() {        
     return (
-      <Grid fluid>
-        <Row className="show-grid">
-          <Col xs={12} md={12}>
-            <Header></Header>
-          </Col>
-        </Row>
-        <Row className="show-grid">
-          <Col>
+      <div>
+            <Header></Header>         
             <Menu {...this.props}></Menu>
-          </Col>
-        </Row>
-        <Row className="show-grid">
-          <Login {...this.props}></Login>
-        </Row>
-      </Grid>
+            <Footer {...this.props}></Footer>                
+            <Login {...this.props}></Login>
+        
+      </div>
     );
   }
 }
