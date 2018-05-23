@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 import { fetchMyInvestigations} from '../actions/data.js';
 import { doLogOut } from '../actions/login.js';
 import InvestigationTable  from "../components/Investigation/InvestigationTable.js"
-import { Menu }  from "../components/Menu/Menu.js"
+import MenuContainer  from "./MenuContainer.js"
 import Footer  from "../components/Footer.js"
-import InvestigationContainerMenu  from "./Investigation/InvestigationContainerMenu.jsx"
+import InvestigationContainerMenu  from "./Investigation/InvestigationContainerMenu.js"
 
 class InvestigationsContainer extends Component {
   constructor(props) {
@@ -31,7 +31,7 @@ class InvestigationsContainer extends Component {
 
     return (
         <div>
-          <Menu  {...this.props}></Menu>       
+          <MenuContainer  {...this.props}></MenuContainer>       
           <InvestigationTable data={this.props.data}></InvestigationTable>
           <Footer  {...this.props}></Footer>
         </div>);

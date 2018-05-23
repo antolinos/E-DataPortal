@@ -5,7 +5,8 @@ import './InvestigationContainerMenu.css';
 
 class InvestigationContainerMenu extends Component { 
   render() {
-    let logURL = "/investigation/" + this.props.investigationId;          
+    let logURL = "/investigation/" + this.props.investigationId;  
+    debugger        
     return <Grid fluid className="navbar-fixed-top MenuBar">        
        <Row>
          <Col  xs={2}>

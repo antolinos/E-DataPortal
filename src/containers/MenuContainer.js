@@ -9,9 +9,10 @@ import { Menu } from '../components/Menu/Menu.js'
 import { Footer } from '../components/Footer.js'
 
 
-class LoginContainer extends Component {
-  render() {        
-    return <Login {...this.props}></Login>;
+class MenuContainer extends Component {
+    
+  render() {                   
+    return <Menu doLogOut={this.props.doLogOut} user={this.props.user}></Menu>;
   }
 }
 
@@ -31,4 +32,4 @@ function mapDispatchToProps(dispatch) {
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(LoginContainer);
+)(MenuContainer);

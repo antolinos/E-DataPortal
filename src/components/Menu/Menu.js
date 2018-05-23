@@ -11,15 +11,17 @@ import './Menu.css';
 
 export class Menu extends React.Component {
   constructor(props) {
-    super(props);
+    super(props);    
     this.onLogOutClicked = this.onLogOutClicked.bind(this);
+
+   
   }
 
   onLogOutClicked(e) {    
     this.props.doLogOut();
   }
 
-  render() {
+  render() {    
     /** If there is not sessionId it means that we are not already been authenticated **/
     if ((!this.props.user) ||  (!this.props.user.sessionId)){      
     return <Navbar fluid className="navbar-fixed-top ">

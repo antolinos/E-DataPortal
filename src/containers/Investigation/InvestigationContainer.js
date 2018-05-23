@@ -8,7 +8,7 @@ import { getDatasetsByInvestigationId } from '../../api/icat/icat.js'
 import { parseQueryParameters } from '../../helpers/URLParser.js'
 import { doLogOut, doSignIn } from '../../actions/login.js';
 import { PERSPECTIVE } from '../../constants/Perspectives.js'
-import InvestigationContainerMenu from './InvestigationContainerMenu.jsx'
+import InvestigationContainerMenu from './InvestigationContainerMenu.js'
 import { Menu }  from "../../components/Menu/Menu.js"
 import Footer  from "../../components/Footer.js"
 import LoginForm  from "../../components/Login/LoginForm.js"
@@ -42,6 +42,7 @@ class InvestigationContainer extends Component {
         return PERSPECTIVE.EVENTS;
       }
     }    
+    
     return PERSPECTIVE.DATASETS;
   }
 
@@ -89,14 +90,14 @@ class InvestigationContainer extends Component {
   componentDidMount() {    
     axios.get(getDatasetsByInvestigationId(this.state.sessionId, this.state.username, this.state.investigationId))
       .then(res => {
-        let datasets = this.parametersToDatasetObject(this.groupBy(res.data, 0));        
+        let datasets = this.parametersToDatasetObject(this.groupBy(res.data, 0));                
         this.setState({      
           datasets: datasets,
           fetching : false
 
         });
       })
-      .catch((error) => {        
+      .catch((error) => {                
            if (error.response) {             
               if (error.response.status == 403){
                   this.props.doLogOut();
@@ -110,20 +111,17 @@ class InvestigationContainer extends Component {
        
     switch (perspective) {
         case PERSPECTIVE.DATASETS:                       
-           return   <div>
-                        <LoginForm {...this.props}></LoginForm>
-                        <Menu  {...this.props}></Menu>       
+           return   <div>                        
                         <InvestigationContainerMenu investigationId={this.state.investigationId} perspective={perspective} ></InvestigationContainerMenu>
-                        <DatasetTable datasets={this.state.datasets} fetching={this.state.fetching}></DatasetTable>
-                        <Footer  {...this.props}></Footer>
+                        <DatasetTable datasets={this.state.datasets} fetching={this.state.fetching}></DatasetTable>                        
                       </div>
 
       case PERSPECTIVE.FILES:
                   return  <div>
-                        <Menu  {...this.props}></Menu>       
+                        
                         <InvestigationContainerMenu investigationId={this.state.investigationId} perspective={perspective} ></InvestigationContainerMenu>
                         <br /><br /><br /><h1>files</h1>
-                        <Footer  {...this.props}></Footer>
+                        
                       </div>
         case PERSPECTIVE.EVENTS:
                   return  <div>
@@ -143,9 +141,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return {  
-    doLogOut: bindActionCreators(doLogOut, dispatch),
-    doSignIn: bindActionCreators(doSignIn, dispatch),
+  return {    
            
   };
 }
