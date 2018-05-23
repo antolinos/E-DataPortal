@@ -6,7 +6,7 @@ import './InvestigationContainerMenu.css';
 class InvestigationContainerMenu extends Component { 
   render() {
     let logURL = "/investigation/" + this.props.investigationId;  
-    debugger        
+            
     return <Grid fluid className="navbar-fixed-top MenuBar">        
        <Row>
          <Col  xs={2}>
@@ -33,7 +33,7 @@ class InvestigationContainerMenu extends Component {
         </Col>
        
         <Col xs={2}>
-             <FormControl bsSize="small" type="text" placeholder="Search" style={{"margin-top":"4px", "margin-left": "30px"}}/>
+             <FormControl bsSize="small" type="text" placeholder="Search" style={{"margin-top":"4px", "marginLeft": "30px"}}/>
         </Col>
 
        </Row>

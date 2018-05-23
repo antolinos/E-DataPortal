@@ -24,3 +24,8 @@
 .dataset-name{
     font-weight: bold;
 }
+
+.dataset-location{
+    color: #586069;        
+    font-size : 10px;
+}

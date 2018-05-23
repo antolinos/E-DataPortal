@@ -69,7 +69,8 @@ class InvestigationContainer extends Component {
         datasets[datasetId]["name"] = param[1];
         datasets[datasetId]["startDate"] = param[2];
         datasets[datasetId]["endDate"] = param[3];
-        datasets[datasetId]["investigationName"] = param[4];
+        datasets[datasetId]["investigationName"] = param[4];        
+        datasets[datasetId]["location"] = param[8];
       }
     }
 
@@ -113,7 +114,7 @@ class InvestigationContainer extends Component {
         case PERSPECTIVE.DATASETS:                       
            return   <div>                        
                         <InvestigationContainerMenu investigationId={this.state.investigationId} perspective={perspective} ></InvestigationContainerMenu>
-                        <DatasetTable datasets={this.state.datasets} fetching={this.state.fetching}></DatasetTable>                        
+                        <DatasetTable datasets={this.state.datasets} fetching={this.state.fetching}></DatasetTable>                                         
                       </div>
 
       case PERSPECTIVE.FILES:

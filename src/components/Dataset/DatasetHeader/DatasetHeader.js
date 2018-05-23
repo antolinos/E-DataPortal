@@ -15,6 +15,9 @@ class DatasetHeader extends React.Component {
               <span className="glyphicon glyphicon-collapse-down color-gray"></span>
               <span className="dataset-type left-margin">{this.props.definition}</span>
               <span  className="left-margin dataset-name">{this.props.name}</span>
+              <span  className="left-margin dataset-location">{this.props.location}</span>
+
+              
             </div>
             <div className="pull-right">              
               <span><Moment className="dataset-header-date" parse="YYYY-MM-DD HH:mm" format="LLLL">{this.props.startDate}</Moment></span>                                         

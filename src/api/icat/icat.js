@@ -5,7 +5,7 @@ const GET_INVESTIGATIONS_BY_USER = "query=select distinct investigation from Inv
 
 const GET_INVESTIGATIONS_WITH_DOI = "query=select distinct investigation from Investigation investigation , investigation.investigationUsers as investigationUserPivot , investigationUserPivot.user as investigationUser where investigation.doi <> null ORDER BY investigation.name asc "
 
-const GET_DATASETS_BY_INVESTIGATION_ID = "query=SELECT dataset.id, dataset.name, dataset.startDate, dataset.endDate, investigation.name, parameterType.name, parameter.stringValue, parameter.numericValue FROM DatasetParameter as parameter JOIN parameter.dataset dataset JOIN parameter.type parameterType JOIN dataset.investigation investigation where investigation.id = :investigationId";
+const GET_DATASETS_BY_INVESTIGATION_ID = "query=SELECT dataset.id, dataset.name, dataset.startDate, dataset.endDate, investigation.name, parameterType.name, parameter.stringValue, parameter.numericValue, dataset.location FROM DatasetParameter as parameter JOIN parameter.dataset dataset JOIN parameter.type parameterType JOIN dataset.investigation investigation where investigation.id = :investigationId";
 
 const GET_SESSION = "sessionId=:sessionId";
 const ICAT_ENTITY_MANAGER = ICAT.server + "/icat/entityManager?";

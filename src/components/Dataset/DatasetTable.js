@@ -28,6 +28,7 @@ class DatasetTable extends React.Component {
                                 definition={dataset.definition} 
                                 name={dataset.name}
                                 startDate={dataset.startDate}
+                                location={dataset.location}
                           ></DatasetHeader>
                         </Panel.Title>
                       </Panel.Heading>
