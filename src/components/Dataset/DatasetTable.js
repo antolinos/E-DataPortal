@@ -59,8 +59,7 @@ class DatasetTable extends React.Component {
   }
 }
 
-DatasetTable.propTypes = {
-  fetching: PropTypes.boolean,
+DatasetTable.propTypes = {  
   datasets : PropTypes.array
 };
 

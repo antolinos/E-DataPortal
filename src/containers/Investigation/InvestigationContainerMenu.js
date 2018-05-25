@@ -9,7 +9,7 @@ class InvestigationContainerMenu extends Component {
             
     return <Grid fluid className="navbar-fixed-top MenuBar">        
        <Row>
-         <Col  xs={2}>
+         <Col  xs={6} md={4}>
             <ButtonToolbar >
               <ToggleButtonGroup  style={{ marginTop: "5px" }} type="radio" name="options" value={this.props.perspective}>
                 <ToggleButton bsSize="small" value={1}>
@@ -28,12 +28,12 @@ class InvestigationContainerMenu extends Component {
             </ButtonToolbar>
         
         </Col>
-        <Col xs={7}>
+        <Col  xs={0} md={6}>
              
         </Col>
        
-        <Col xs={2}>
-             <FormControl bsSize="small" type="text" placeholder="Search" style={{"margin-top":"4px", "marginLeft": "30px"}}/>
+        <Col  xs={6} md={2}>
+             <FormControl bsSize="small" type="text" placeholder="Search" style={{"margin-top":"4px"}}/>
         </Col>
 
        </Row>

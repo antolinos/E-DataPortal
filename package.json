@@ -23,7 +23,8 @@
     "redux-logger": "^3.0.6",
     "redux-persist": "^5.9.1",
     "redux-promise-middleware": "^5.1.1",
-    "redux-thunk": "^2.2.0"
+    "redux-thunk": "^2.2.0",
+    "treeview-react-bootstrap": "^0.4.6"
   },
   "scripts": {
     "start": "react-scripts start",

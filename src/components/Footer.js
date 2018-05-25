@@ -5,9 +5,9 @@ import logo from '../images/ebs.gif';
 export class Footer extends React.Component {
 
   render() {    
-    if ((!this.props.user) ||  (!this.props.user.sessionId)){      
+    /*if ((!this.props.user) ||  (!this.props.user.sessionId)){      
       return null;      
-    }
+    }*/
     
     return   <nav className="navbar navbar-default navbar-fixed-bottom" >     
         <Navbar.Header  >

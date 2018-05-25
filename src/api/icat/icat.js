@@ -12,6 +12,9 @@ const ICAT_ENTITY_MANAGER = ICAT.server + "/icat/entityManager?";
 
 
 
+const GET_FILES_BY_DATASETID_ID = "query=select distinct datafile from Datafile datafile , datafile.dataset as dataset  where  dataset.id = :datasetId limit 0, 50 "
+
+
 function getSession(sessionId, user){
     return GET_SESSION.replace(":sessionId", sessionId);
 }
@@ -27,5 +30,10 @@ export function getInvestigationsWithDOI(sessionId, user){
 
 export function getDatasetsByInvestigationId(sessionId, user, investigationId){        
     return ICAT_ENTITY_MANAGER + getSession(sessionId) + "&" + GET_DATASETS_BY_INVESTIGATION_ID.replace(":investigationId", investigationId) + "&server=https://icat.esrf.fr";
+}
+
+export function getFilesByDatasetId(sessionId, user, datasetId){   
+    debugger 
+       return ICAT_ENTITY_MANAGER + getSession(sessionId) + "&" + GET_FILES_BY_DATASETID_ID.replace(":datasetId", datasetId) + "&server=https://icat.esrf.fr";
 }
 

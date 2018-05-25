@@ -12,6 +12,7 @@ import InvestigationContainerMenu from './InvestigationContainerMenu.js'
 import { Menu }  from "../../components/Menu/Menu.js"
 import Footer  from "../../components/Footer.js"
 import LoginForm  from "../../components/Login/LoginForm.js"
+import InvestigationFileTree  from "../../components/File/InvestigationFileTree.js"
 
 class InvestigationContainer extends Component {
   constructor(props) {
@@ -107,30 +108,27 @@ class InvestigationContainer extends Component {
       });
   }
 
-  render() {
-    let perspective = this.getActivePerspective();   
-       
-    switch (perspective) {
+  renderPerspective(perspective){
+      switch (perspective) {
         case PERSPECTIVE.DATASETS:                       
-           return   <div>                        
-                        <InvestigationContainerMenu investigationId={this.state.investigationId} perspective={perspective} ></InvestigationContainerMenu>
-                        <DatasetTable datasets={this.state.datasets} fetching={this.state.fetching}></DatasetTable>                                         
-                      </div>
-
+           return <DatasetTable datasets={this.state.datasets} fetching={this.state.fetching}></DatasetTable>;                                                              
       case PERSPECTIVE.FILES:
-                  return  <div>
-                        
-                        <InvestigationContainerMenu investigationId={this.state.investigationId} perspective={perspective} ></InvestigationContainerMenu>
-                        <br /><br /><br /><h1>files</h1>
-                        
-                      </div>
+           return <InvestigationFileTree sessionId={this.props.user.sessionId} username={this.props.user.username} datasets={this.state.datasets} fetching={this.state.fetching}></InvestigationFileTree>;                                                                                      
         case PERSPECTIVE.EVENTS:
-                  return  <div>
-                              <InvestigationContainerMenu investigationId={this.state.investigationId} perspective={perspective} ></InvestigationContainerMenu>"Events"</div>;
-     
+          return  <div><InvestigationContainerMenu investigationId={this.state.investigationId} perspective={perspective} ></InvestigationContainerMenu>"Events"</div>;     
         default: 
-                  return "Nothing to display";
-    }
+          return "Nothing to display";
+      }
+  } 
+
+
+
+  render() {   
+      let perspective = this.getActivePerspective();
+      return (<div>                        
+                        <InvestigationContainerMenu investigationId={this.state.investigationId} perspective={perspective} ></InvestigationContainerMenu>
+                        {this.renderPerspective(perspective)}                                                             
+      </div>);      
   }
 }
 

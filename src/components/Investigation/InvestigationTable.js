@@ -74,7 +74,7 @@ class InvestigationTable extends React.Component {
             <TableHeaderColumn dataSort width='5%' dataField='visitId' dataFormat={ this.beamlineFormatter }>Beamline</TableHeaderColumn>
             <TableHeaderColumn dataSort dataField='summary'>Title</TableHeaderColumn>
             <TableHeaderColumn width='5%' dataFormat={ this.datasetFormatter }>Datasets</TableHeaderColumn>
-            <TableHeaderColumn width='5%'  dataFormat={ this.volumeFormatter }>Volume</TableHeaderColumn>
+            <TableHeaderColumn width='5%'  dataFormat={ this.volumeFormatter }>Size</TableHeaderColumn>
             <TableHeaderColumn dataSort width='5%' dataField='startDate' dataFormat={ this.dateFormatter }>Date</TableHeaderColumn>  
              <TableHeaderColumn dataSort width='5%' dataField='releaseDate' dataFormat={ this.dateFormatter }>Release</TableHeaderColumn>            
             <TableHeaderColumn width='15%' dataFormat={ this.doiFormatter } dataField='doi' dataAlign='center'></TableHeaderColumn>

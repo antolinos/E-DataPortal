@@ -32,8 +32,7 @@ class InvestigationsContainer extends Component {
     return (
         <div>
           <MenuContainer  {...this.props}></MenuContainer>       
-          <InvestigationTable data={this.props.data}></InvestigationTable>
-          <Footer  {...this.props}></Footer>
+          <InvestigationTable data={this.props.data}></InvestigationTable>        
         </div>);
   }
 }
