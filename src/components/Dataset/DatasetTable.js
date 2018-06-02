@@ -6,6 +6,7 @@ import './DatasetTable.css';
 import DatasetHeader from "./DatasetHeader/DatasetHeader.js"
 import DatasetFooter  from "./DatasetFooter/DatasetFooter.js"
 import DatasetSummary from "./DatasetSummary/DatasetSummary.js"                            
+import DatasetMetadataTab from "./DatasetMetadataTab/DatasetMetadataTab.js"  
 
 
 class DatasetTable extends React.Component {
@@ -38,8 +39,9 @@ class DatasetTable extends React.Component {
                             <Tab eventKey={1} title="Summary">
                               <DatasetSummary dataset={dataset} ></DatasetSummary>
                             </Tab>
-                            <Tab eventKey={2} title="Metadata">Tab 2 content
-                                      </Tab>
+                            <Tab  eventKey={2} title="Metadata List">
+                              <DatasetMetadataTab dataset={dataset} ></DatasetMetadataTab>
+                             </Tab>
                           </Tabs>
                         </Panel.Body>
                       </Panel.Collapse>
