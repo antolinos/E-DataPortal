@@ -1,6 +1,6 @@
 import React from 'react';
 import Moment from 'react-moment';
-import { Grid, Row, Col } from 'react-bootstrap';
+import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
 import './DatasetMetadataTab.css';
 
 class DatasetMetadataTab extends React.Component {
@@ -12,45 +12,41 @@ class DatasetMetadataTab extends React.Component {
     
   }
 
-  render() {              
+  render() {     
+    console.log(this.props.dataset)  
+    debugger    
+    const options = {
+      paginationSize: 10,
+      sizePerPage: 25,
+      paginationShowsTotal: true,
+      hidePageListOnlyOnePage: true
+    };
+    var keys = Object.keys(this.props.dataset).sort((a, b) => a.localeCompare(b, undefined, {sensitivity: 'base'}));  
+    var data = [];
+    
+    for (var index in keys){
+        data.push({
+          key : keys[index],
+          value : this.props.dataset[keys[index]]
+        })
+    } 
     return (
-      <Grid fluid>
-      <Row>
-
-          <Col xs={3} md={3}>
-              <br />
-              <table className="table table-sm table-condensed ">  
-              <tbody>
-                <tr>
-                    <td>Name</td>
-                    <td  className='column_parameter_value'>{this.props.dataset.name}</td>
-                </tr>
-                <tr>
-                    <td>Definition</td>
-                    <td  className='column_parameter_value'>{this.props.dataset.definition}</td>
-                </tr>
-                <tr>
-                    <td>Start</td>
-                    <td  className='column_parameter_value'><Moment parse="YYYY-MM-DD HH:mm" format="LTS">{this.props.dataset.startDate}</Moment></td>
-                </tr>
-                <tr>
-                    <td>End</td>
-                    <td  className='column_parameter_value'><Moment parse="YYYY-MM-DD HH:mm" format="LTS">{this.props.dataset.endDate}</Moment></td>
-                </tr>
-                 <tr>
-                    <td>Sample</td>
-                    <td  className='column_parameter_value'>{this.props.dataset.Sample_name}</td>
-                </tr>   
-                </tbody>             
-            </table> 
-
-          </Col> 
-          <Col xs={10} md={10}>             
-          </Col>         
-        </Row>
-      </Grid>          
+      <div style={{padding:10}}>
+      <BootstrapTable
+            data={ data } 
+            options={ options }
+            pagination
+            striped
+            search          
+            hover
+            condensed> 
+                       
+            <TableHeaderColumn width='10%'  isKey dataField='key'>Name</TableHeaderColumn>
+            <TableHeaderColumn dataSort width='90%' dataField='value'>Value</TableHeaderColumn>
+          
+          </BootstrapTable>          
                      
-
+          </div>
     );
   }
 }
